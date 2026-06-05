@@ -18,9 +18,11 @@ export default function ContactPage() {
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (emailError) return;
     setStatus("loading");
     setErrorMessage("");
 
@@ -248,10 +250,30 @@ export default function ContactPage() {
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-500 transition-colors"
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\s/g, "");
+                      setFormData({ ...formData, email: value });
+                      if (value && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)) {
+                        setEmailError("Please enter a valid email address.");
+                      } else {
+                        setEmailError("");
+                      }
+                    }}
+                    onKeyDown={(e) => { if (e.key === " ") e.preventDefault(); }}
+                    onPaste={(e) => {
+                      e.preventDefault();
+                      const pasted = e.clipboardData.getData("text").replace(/\s/g, "");
+                      setFormData({ ...formData, email: pasted });
+                      if (pasted && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(pasted)) {
+                        setEmailError("Please enter a valid email address.");
+                      } else {
+                        setEmailError("");
+                      }
+                    }}
+                    className={`w-full bg-slate-900 border ${emailError ? 'border-red-500' : 'border-slate-800'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-500 transition-colors`}
                     placeholder="john@example.com"
                   />
+                  {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-5">
