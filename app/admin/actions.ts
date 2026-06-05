@@ -8,13 +8,13 @@ export async function loginAction(formData: FormData) {
   const password = formData.get("password");
 
   // Simple hardcoded check for demo purposes
-  if (username === "admin" && password === "admin123") {
+  if (username === "admin" && password === "panda#123") {
     // Set cookie
     const cookieStore = await cookies();
     cookieStore.set("admin_token", "authenticated", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 24, // 1 day
+      maxAge: 60 * 60 * 24, 
       path: "/",
     });
     

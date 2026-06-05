@@ -3,14 +3,16 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Loader2 } from "lucide-react";
-import { FaMeta, FaGoogle, FaShopify, FaAmazon, FaWhatsapp } from "react-icons/fa6";
-import { SiGoogleanalytics } from "react-icons/si";
+import { FaMeta, FaShopify, FaAmazon, FaWhatsapp } from "react-icons/fa6";
+//import { SiGoogleanalytics } from "react-icons/si";
 
 export default function HeroSection() {
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
     phone: "",
     propertyType: "Residential Real Estate",
+    budget: "40k - 50k",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -31,7 +33,7 @@ export default function HeroSection() {
 
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", phone: "", propertyType: "Residential Real Estate" });
+        setFormData({ name: "", email: "", phone: "", propertyType: "Residential Real Estate", budget: "40k - 50k" });
       } else {
         throw new Error(data.error || "Something went wrong");
       }
@@ -111,6 +113,17 @@ export default function HeroSection() {
                 />
               </div>
               <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+                <input 
+                  type="email" 
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500" 
+                  placeholder="john@example.com" 
+                />
+              </div>
+              <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
                 <input 
                   type="tel" 
@@ -134,6 +147,18 @@ export default function HeroSection() {
                   <option>Land / Plots</option>
                   <option>Luxury Real Estate</option>
                   <option>Mixed-Use Real Estate</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Budget Range</label>
+                <select 
+                  value={formData.budget}
+                  onChange={(e) => setFormData({...formData, budget: e.target.value})}
+                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none"
+                >
+                  <option value="40k - 50k">₹40k – ₹50k / month</option>
+                  <option value="50k - 1cr">₹50k – ₹1 Cr / month</option>
+                  <option value="1cr - 2cr">₹1 Cr – ₹2 Cr / month</option>
                 </select>
               </div>
 
@@ -171,12 +196,12 @@ export default function HeroSection() {
           <p className="text-center text-sm font-medium text-gray-400 mb-6 uppercase tracking-wider">Trusted By Modern Businesses & Official Partners</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 transition-all duration-500">
             {[
-              { name: "Meta Business", icon: <FaMeta size={28} color="#0668E1" /> },
-              { name: "Google Ads", icon: <FaGoogle size={28} color="#4285F4" /> },
+              { name: "Meta ", icon: <FaMeta size={28} color="#0668E1" /> },
+              { name: "Google Ads", icon: <GoogleIcon /> },
               { name: "Shopify", icon: <FaShopify size={28} color="#95BF47" /> },
               { name: "Amazon", icon: <FaAmazon size={28} color="#FF9900" /> },
               { name: "WhatsApp", icon: <FaWhatsapp size={28} color="#25D366" /> },
-              { name: "Analytics", icon: <SiGoogleanalytics size={28} color="#F4B400" /> }
+              
             ].map((partner) => (
               <div key={partner.name} className="flex items-center space-x-3 text-xl font-bold text-white opacity-80 hover:opacity-100 transition-all hover:scale-105 transform duration-300">
                 {partner.icon}
@@ -190,3 +215,13 @@ export default function HeroSection() {
     </section>
   );
 }
+
+const GoogleIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 48 48">
+    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+    <path fill="none" d="M0 0h48v48H0z"/>
+  </svg>
+);

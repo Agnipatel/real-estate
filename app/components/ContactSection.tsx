@@ -7,8 +7,10 @@ import { Mail, Phone, MapPin, Loader2 } from "lucide-react";
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
     phone: "",
     propertyType: "Residential Real Estate",
+    budget: "40k - 50k",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -29,7 +31,7 @@ export default function ContactSection() {
 
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", phone: "", propertyType: "Residential Real Estate" });
+        setFormData({ name: "", email: "", phone: "", propertyType: "Residential Real Estate", budget: "40k - 50k" });
       } else {
         throw new Error(data.error || "Something went wrong");
       }
@@ -111,6 +113,17 @@ export default function ContactSection() {
                 />
               </div>
               <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                <input 
+                  type="email" 
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-500 transition-colors" 
+                  placeholder="Enter your email address" 
+                />
+              </div>
+              <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
                 <input 
                   type="tel" 
@@ -132,6 +145,18 @@ export default function ContactSection() {
                   <option>Commercial Real Estate</option>
                   <option>Luxury Real Estate</option>
                   <option>Land / Plots</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Budget Range</label>
+                <select 
+                  value={formData.budget}
+                  onChange={(e) => setFormData({...formData, budget: e.target.value})}
+                  className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-500 transition-colors appearance-none"
+                >
+                  <option value="40k - 50k">₹40k – ₹50k / month</option>
+                  <option value="50k - 1cr">₹50k – ₹1 Cr / month</option>
+                  <option value="1cr - 2cr">₹1 Cr – ₹2 Cr / month</option>
                 </select>
               </div>
               

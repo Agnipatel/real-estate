@@ -5,13 +5,13 @@ import { CheckCircle, TrendingUp, Zap, Server, BarChart } from "lucide-react";
 
 export default function StatsSection() {
   const stats = [
-    { value: "1000+", label: "Happy Clients", desc: "Helping brands scale with AI-powered strategies." },
-    { value: "10K+", label: "Lead Campaigns", desc: "Successfully managed across multiple industries." },
+    { value: "400+", label: "Happy Clients", desc: "Helping brands scale with AI-powered strategies." },
+    { value: "4K+", label: "Lead Campaigns", desc: "Successfully managed across multiple industries." },
     { value: "100K+", label: "Social Queries", desc: "Generated customer engagement with measurable results." }
   ];
 
   const reasons = [
-    { icon: <BarChart className="text-green-500" size={24} />, title: "Data-Driven Performance", desc: "Optimized using real-time analytics." },
+   
     { icon: <Zap className="text-green-500" size={24} />, title: "AI-Powered Optimization", desc: "Advanced automation improves targeting." },
     { icon: <TrendingUp className="text-green-500" size={24} />, title: "Conversion-Focused", desc: "Focus on qualified leads and revenue." },
     { icon: <Server className="text-green-500" size={24} />, title: "End-to-End Support", desc: "From ad creatives to CRM automation." },

@@ -93,9 +93,7 @@ export default function AdminLogin() {
               )}
             </button>
             
-            <p className="text-center text-xs text-white/40 mt-6">
-              Use <span className="text-white/80 font-medium">admin</span> / <span className="text-white/80 font-medium">admin123</span> to login
-            </p>
+            
           </form>
         </div>
       </div>

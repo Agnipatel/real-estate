@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import connectMongo from "@/lib/mongodb";
 import Contact from "@/models/Contact";
+import ExportExcelButton from "../../components/ExportExcelButton";
 import { 
   LogOut, 
   LayoutDashboard, 
@@ -9,6 +10,7 @@ import {
   Settings, 
   Home,
   Phone,
+  Mail,
   Calendar,
   Building,
   Search
@@ -141,11 +143,18 @@ export default async function AdminDashboard() {
           {/* Table Section */}
           <div className="bg-white/5 border border-white/10 rounded-2xl backdrop-blur-xl overflow-hidden relative z-10">
             <div className="p-6 border-b border-white/10 flex justify-between items-center">
-              <h2 className="text-lg font-semibold">Recent Inquiries</h2>
-              <button className="text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors">
-                View All
-              </button>
-            </div>
+  <h2 className="text-lg font-semibold">
+    Recent Inquiries
+  </h2>
+
+  <div className="flex gap-3">
+    <ExportExcelButton contacts={JSON.parse(JSON.stringify(contacts))} />
+
+    <button className="text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors">
+      View All
+    </button>
+  </div>
+</div>
             
             {contacts.length === 0 ? (
               <div className="p-12 text-center flex flex-col items-center justify-center">
@@ -181,9 +190,17 @@ export default async function AdminDashboard() {
                           </div>
                         </td>
                         <td className="py-4 px-6">
-                          <div className="flex items-center gap-2 text-white/80">
-                            <Phone className="w-3.5 h-3.5 text-white/40 group-hover:text-blue-400 transition-colors" />
-                            <a href={`tel:${contact.phone}`} className="hover:text-white transition-colors">{contact.phone}</a>
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2 text-white/80">
+                              <Phone className="w-3.5 h-3.5 text-white/40 group-hover:text-blue-400 transition-colors" />
+                              <a href={`tel:${contact.phone}`} className="hover:text-white transition-colors">{contact.phone}</a>
+                            </div>
+                            {contact.email && (
+                              <div className="flex items-center gap-2 text-white/80">
+                                <Mail className="w-3.5 h-3.5 text-white/40 group-hover:text-blue-400 transition-colors" />
+                                <a href={`mailto:${contact.email}`} className="hover:text-white transition-colors text-sm">{contact.email}</a>
+                              </div>
+                            )}
                           </div>
                         </td>
                         <td className="py-4 px-6">

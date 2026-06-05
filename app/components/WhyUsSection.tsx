@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Target, Users, TrendingUp, BarChart } from "lucide-react";
+import { Target, Users, TrendingUp, } from "lucide-react";
 
 export default function WhyUsSection() {
   const focuses = [
     { icon: <Users size={24} />, title: "Qualified property leads" },
     { icon: <Target size={24} />, title: "High-intent buyer inquiries" },
     { icon: <TrendingUp size={24} />, title: "Site visit bookings" },
-    { icon: <BarChart size={24} />, title: "Lower cost per lead (CPL)" },
+   
   ];
 
   return (

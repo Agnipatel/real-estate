@@ -5,9 +5,9 @@ import Contact from "@/models/Contact";
 
 export async function POST(req: Request) {
   try {
-    const { name, phone, propertyType } = await req.json();
+    const { name, email, phone, propertyType } = await req.json();
 
-    if (!name || !phone || !propertyType) {
+    if (!name || !email || !phone || !propertyType) {
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
 
     // Step 1: ALWAYS save lead to MongoDB first (this never fails)
     await connectMongo();
-    await Contact.create({ name, phone, propertyType });
+    await Contact.create({ name, email, phone, propertyType });
 
     // Step 2: Try sending email (non-blocking — form succeeds even if email fails)
     let emailSent = false;
@@ -47,6 +47,12 @@ export async function POST(req: Request) {
                     <td style="padding: 16px 20px; background: #1e293b; border-bottom: 1px solid #334155;">
                       <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Full Name</span><br/>
                       <span style="color: #ffffff; font-size: 20px; font-weight: bold; margin-top: 6px; display: block;">${name}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 16px 20px; background: #1e293b; border-bottom: 1px solid #334155;">
+                      <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Email Address</span><br/>
+                      <span style="color: #ffffff; font-size: 20px; font-weight: bold; margin-top: 6px; display: block;">${email}</span>
                     </td>
                   </tr>
                   <tr>
