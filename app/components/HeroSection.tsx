@@ -1,18 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Loader2 } from "lucide-react";
 import { FaMeta, FaShopify, FaAmazon, FaWhatsapp } from "react-icons/fa6";
 //import { SiGoogleanalytics } from "react-icons/si";
 
 export default function HeroSection() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     propertyType: "Residential Real Estate",
     budget: "40k - 50k",
+    message: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -35,7 +38,8 @@ export default function HeroSection() {
 
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", email: "", phone: "", propertyType: "Residential Real Estate", budget: "40k - 50k" });
+        setFormData({ name: "", email: "", phone: "", propertyType: "Residential Real Estate", budget: "40k - 50k", message: "" });
+        router.push("/thank-you");
       } else {
         throw new Error(data.error || "Something went wrong");
       }
@@ -172,7 +176,7 @@ export default function HeroSection() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">Budget Range</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Marketing Budget</label>
                 <select 
                   value={formData.budget}
                   onChange={(e) => setFormData({...formData, budget: e.target.value})}
@@ -184,12 +188,21 @@ export default function HeroSection() {
                 </select>
               </div>
 
-              {status === "success" && (
-                <div className="bg-green-500/10 border border-green-500/50 text-green-400 p-3 rounded-lg text-sm">
-                  Thank you! We will connect with you soon.
-                </div>
-              )}
-              
+              {/* Message */}
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">
+                  Message{" "}
+                  <span className="text-gray-500 font-normal">(Optional)</span>
+                </label>
+                <textarea
+                  rows={3}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500 resize-none placeholder-slate-600"
+                  placeholder="Tell us about your project or any specific requirements..."
+                />
+              </div>
+
               {status === "error" && (
                 <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-3 rounded-lg text-sm">
                   {errorMessage || "Failed to submit. Please try again."}
@@ -199,9 +212,9 @@ export default function HeroSection() {
               <button 
                 type="submit" 
                 disabled={status === "loading"}
-                className="w-full bg-white text-slate-900 font-bold px-4 py-4 rounded-lg hover:bg-gray-100 transition-colors mt-2 flex justify-center items-center"
+                className="w-full bg-white text-slate-900 font-bold px-4 py-4 rounded-lg hover:bg-gray-100 transition-colors mt-2 flex justify-center items-center gap-2"
               >
-                {status === "loading" ? <Loader2 className="animate-spin mr-2" size={20} /> : null}
+                {status === "loading" ? <Loader2 className="animate-spin" size={20} /> : null}
                 Request Free Audit
               </button>
             </form>
@@ -218,12 +231,11 @@ export default function HeroSection() {
           <p className="text-center text-sm font-medium text-gray-400 mb-6 uppercase tracking-wider">Trusted By Modern Businesses & Official Partners</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 transition-all duration-500">
             {[
-              { name: "Meta ", icon: <FaMeta size={28} color="#0668E1" /> },
+              { name: "Meta", icon: <FaMeta size={28} color="#0668E1" /> },
               { name: "Google Ads", icon: <GoogleIcon /> },
               { name: "Shopify", icon: <FaShopify size={28} color="#95BF47" /> },
               { name: "Amazon", icon: <FaAmazon size={28} color="#FF9900" /> },
               { name: "WhatsApp", icon: <FaWhatsapp size={28} color="#25D366" /> },
-              
             ].map((partner) => (
               <div key={partner.name} className="flex items-center space-x-3 text-xl font-bold text-white opacity-80 hover:opacity-100 transition-all hover:scale-105 transform duration-300">
                 {partner.icon}

@@ -5,7 +5,7 @@ import Contact from "@/models/Contact";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, phone, propertyType } = await req.json();
+    const { name, email, phone, propertyType, budget, message } = await req.json();
 
     if (!name || !email || !phone || !propertyType) {
       return NextResponse.json(
@@ -14,11 +14,11 @@ export async function POST(req: Request) {
       );
     }
 
-    // Step 1: ALWAYS save lead to MongoDB first (this never fails)
+    // Step 1: Save lead to MongoDB (always runs first)
     await connectMongo();
-    await Contact.create({ name, email, phone, propertyType });
+    await Contact.create({ name, email, phone, propertyType, budget: budget || "", message: message || "" });
 
-    // Step 2: Try sending email (non-blocking — form succeeds even if email fails)
+    // Step 2: Try sending email notification (non-blocking)
     let emailSent = false;
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS && process.env.EMAIL_PASS !== "YOUR_GMAIL_APP_PASSWORD_HERE") {
       try {
@@ -62,11 +62,24 @@ export async function POST(req: Request) {
                     </td>
                   </tr>
                   <tr>
-                    <td style="padding: 16px 20px; background: #1e293b;">
+                    <td style="padding: 16px 20px; background: #1e293b; border-bottom: 1px solid #334155;">
                       <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Property Type</span><br/>
                       <span style="color: #ffffff; font-size: 20px; font-weight: bold; margin-top: 6px; display: block;">${propertyType}</span>
                     </td>
                   </tr>
+                  <tr>
+                    <td style="padding: 16px 20px; background: #1e293b; border-bottom: 1px solid #334155;">
+                      <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Budget Range</span><br/>
+                      <span style="color: #ffffff; font-size: 18px; font-weight: bold; margin-top: 6px; display: block;">${budget || "Not specified"}</span>
+                    </td>
+                  </tr>
+                  ${message ? `
+                  <tr>
+                    <td style="padding: 16px 20px; background: #1e293b;">
+                      <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Message</span><br/>
+                      <span style="color: #cbd5e1; font-size: 15px; margin-top: 6px; display: block; line-height: 1.6;">${message}</span>
+                    </td>
+                  </tr>` : ""}
                 </table>
                 <div style="margin-top: 28px; padding: 18px; background: #166534; border-radius: 10px; border-left: 4px solid #22c55e;">
                   <p style="margin: 0; color: #bbf7d0; font-size: 14px;">⚡ <strong>Action Required:</strong> Follow up with this lead as soon as possible to maximize conversion!</p>
