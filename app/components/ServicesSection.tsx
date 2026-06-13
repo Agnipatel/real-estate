@@ -47,20 +47,20 @@ export default function ServicesSection() {
   return (
     <section id="services" className="py-24 bg-slate-950 relative">
       <div className="container mx-auto px-6">
-        {/* Section Header */}
+
+        {/* ================= HEADER ================= */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             Our Real Estate{" "}
             <span className="text-green-500">Marketing Services</span>
           </h2>
-
           <p className="text-gray-400 text-lg">
             Comprehensive digital marketing solutions engineered to drive
-            property sales and maximize your ROI.
+            property sales and maximize ROI.
           </p>
         </div>
 
-        {/* Services Grid */}
+        {/* ================= SERVICES GRID ================= */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {services.map((service, idx) => (
             <motion.div
@@ -68,10 +68,12 @@ export default function ServicesSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-slate-900 border border-slate-800 hover:border-green-500/50 p-8 rounded-2xl transition-all group"
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="bg-slate-900 border border-slate-800 hover:border-green-500/50
+                         p-8 rounded-2xl transition-all group"
             >
-              <div className="bg-slate-800 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="bg-slate-800 w-16 h-16 rounded-xl flex items-center justify-center mb-6
+                              group-hover:scale-110 transition-transform">
                 {service.icon}
               </div>
 
@@ -86,12 +88,14 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* AI Highlight */}
+        {/* ================= AI HIGHLIGHT ================= */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-green-900/40 to-slate-900 border border-green-500/20 rounded-3xl p-8 md:p-12 relative overflow-hidden"
+          className="bg-gradient-to-r from-green-900/40 to-slate-900
+                     border border-green-500/20 rounded-3xl
+                     p-8 md:p-12 relative overflow-hidden mb-16"
         >
           <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
             <Cpu size={400} />
@@ -108,52 +112,51 @@ export default function ServicesSection() {
             </h3>
 
             <p className="text-gray-300 mb-6 leading-relaxed">
-              As an AI performance marketing company, PANDAeCe uses advanced
-              analytics and automation to optimize campaigns in real time.
+              PANDAeCe uses AI-driven analytics and automation to optimize
+              campaigns in real time and improve lead quality.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 text-white font-medium">
-              <div className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-500 mr-3" />
-                Reach the right audience
-              </div>
-
-              <div className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-500 mr-3" />
-                Reduce wasted ad spend
-              </div>
-
-              <div className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-500 mr-3" />
-                Improve targeting accuracy
-              </div>
-
-              <div className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-500 mr-3" />
-                Generate higher-quality leads
-              </div>
+              {[
+                "Reach the right audience",
+                "Reduce wasted ad spend",
+                "Improve targeting accuracy",
+                "Generate higher-quality leads",
+              ].map((item, i) => (
+                <div key={i} className="flex items-center">
+                  <div className="w-2 h-2 rounded-full bg-green-500 mr-3" />
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>
 
-        {/* CTA Button */}
-        <div className="flex justify-center mt-12">
+        {/* ================= CTA BUTTON ================= */}
+        <div className="flex justify-center">
           <a
             href="#contact"
-            className="w-full max-w-2xl bg-green-600 hover:bg-green-700 text-white text-center text-xl md:text-3xl font-bold py-6 md:py-8 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-green-500/30 flex items-center justify-center group"
+            className="w-full max-w-3xl bg-green-600 hover:bg-green-700
+                       text-white text-center text-xl md:text-3xl font-bold
+                       py-6 md:py-8 px-8 rounded-2xl
+                       transition-all duration-300
+                       shadow-lg hover:shadow-green-500/30
+                       flex items-center justify-center group"
           >
-            Get a Free Real Estate Marketing Audit
-
+            Book a Free Real Estate Growth Consultation
             <ArrowRight
-              className="ml-3 group-hover:translate-x-1 transition-transform"
-              size={28}
+              className="ml-4 group-hover:translate-x-1 transition-transform"
+              size={30}
             />
           </a>
         </div>
+
       </div>
     </section>
   );
 }
+
+/* ================= ICONS ================= */
 
 const UsersIcon = () => (
   <svg
@@ -177,15 +180,15 @@ const UsersIcon = () => (
 
 const ArrowRight = ({
   className,
-  size,
+  size = 24,
 }: {
   className?: string;
   size?: number;
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={size || 24}
-    height={size || 24}
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"

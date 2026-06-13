@@ -70,6 +70,20 @@ export default function WhyUsSection() {
           </motion.div>
 
         </div>
+        {/* CTA Button */}
+        <div className="flex justify-center mt-12">
+          <a
+            href="#contact"
+            className="w-full max-w-2xl bg-green-600 hover:bg-green-700 text-white text-center text-xl md:text-3xl font-bold py-6 md:py-8 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-green-500/30 flex items-center justify-center group"
+          >
+            Request Your Free Lead Generation Audit
+
+            <ArrowRight
+              className="ml-3 group-hover:translate-x-1 transition-transform"
+              size={28}
+            />
+          </a>
+        </div>
       </div>
     </section>
   );

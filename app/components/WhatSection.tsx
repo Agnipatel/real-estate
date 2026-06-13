@@ -10,7 +10,7 @@ const WHATSAPP_MSG = encodeURIComponent(
   "Hi PANDAeCe! I'm interested in your services. Please share more details."
 );
 
-export default function ContactPage() {
+export default function WhatSection() {
   const contactItems = [
     {
       icon: <Phone size={22} />,

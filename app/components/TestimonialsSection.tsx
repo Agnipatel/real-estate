@@ -44,7 +44,7 @@ export default function TestimonialsSection() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">What Our <span className="text-green-500">Clients Say</span></h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Don't just take our word for it. Here is what leading real estate brands have to say about our performance marketing.
+            Don t just take our word for it. Here is what leading real estate brands have to say about our performance marketing.
           </p>
         </div>
 
@@ -63,7 +63,7 @@ export default function TestimonialsSection() {
                   {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
                 </div>
                 <p className="text-gray-300 italic mb-6 leading-relaxed">
-                  "{item.text}"
+                  {item.text}
                 </p>
               </div>
               <div className="border-t border-slate-700 pt-4 mt-4">
@@ -73,8 +73,44 @@ export default function TestimonialsSection() {
             </motion.div>
           ))}
         </div>
+ {/* CTA Button */}
+        <div className="flex justify-center mt-12">
+          <a
+            href="#contact"
+            className="w-full max-w-2xl bg-green-600 hover:bg-green-700 text-white text-center text-xl md:text-3xl font-bold py-6 md:py-8 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-green-500/30 flex items-center justify-center group"
+          >
+            Let s Grow Your Real Estate Business
 
+            <ArrowRight
+              className="ml-3 group-hover:translate-x-1 transition-transform"
+              size={28}
+            />
+          </a>
+        </div>
       </div>
     </section>
   );
 }
+const ArrowRight = ({
+  className,
+  size,
+}: {
+  className?: string;
+  size?: number;
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size || 24}
+    height={size || 24}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M5 12h14" />
+    <path d="m12 5 7 7-7 7" />
+  </svg>
+);

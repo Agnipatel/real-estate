@@ -60,7 +60,7 @@ export default function ContactPage() {
           budget: "40k - 50k",
           message: "",
         });
-        router.push("/thank-you");
+        router.push("/realestatemarketingpandaece");
       } else {
         throw new Error(data.error || "Something went wrong");
       }
@@ -90,116 +90,22 @@ export default function ContactPage() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-14 items-start">
-
-            {/* ── Left: info panel ── */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready to Generate{" "}
-                <span className="text-green-500">High-Quality Leads?</span>
-              </h2>
-              <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                Whether you&apos;re launching a residential project, promoting luxury
-                apartments, or scaling commercial campaigns — PANDAeCe builds
-                data-driven strategies that deliver measurable results.
-              </p>
-
-              {/* Bullet points */}
-              <div className="space-y-4 mb-10">
-                {[
-                  "Dedicated real estate marketing team",
-                  "AI-powered audience targeting",
-                  "Full-funnel campaign management",
-                  "Real-time analytics & reporting",
-                  "Guaranteed lead quality SLA",
-                ].map((point, i) => (
-                  <div key={i} className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle2 size={17} className="text-green-500 flex-shrink-0" />
-                    {point}
-                  </div>
-                ))}
-              </div>
-
-              {/* Office Address — clickable Google Maps */}
-              <a
-                href={GOOGLE_MAPS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="office-address-map-link"
-                className="group flex items-start gap-4 bg-slate-900 border border-slate-800 hover:border-green-500/40 rounded-2xl p-5 transition-all"
-              >
-                <div className="bg-green-500/10 text-green-400 p-3 rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <MapPin size={20} />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <p className="text-xs text-gray-500 font-semibold uppercase tracking-widest">
-                      Office Address
-                    </p>
-                    <ExternalLink
-                      size={11}
-                      className="text-gray-600 group-hover:text-green-400 transition-colors"
-                    />
-                  </div>
-                  <p className="text-white font-semibold leading-relaxed text-sm">
-                    4th Floor, 292, 7th Main Rd,
-                    <br />
-                    Vyalikaval HBCS Layout, Nagavara,
-                    <br />
-                    Bengaluru, Karnataka 560045
-                  </p>
-                  <p className="text-green-400 text-xs font-medium mt-2 group-hover:text-green-300 transition-colors flex items-center gap-1">
-                    Open in Google Maps
-                    <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
-                  </p>
-                </div>
-              </a>
-
-              {/* WhatsApp quick message */}
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="whatsapp-quick-msg"
-                className="group mt-4 flex items-center gap-4 bg-[#25D366]/8 border border-[#25D366]/25 hover:border-[#25D366]/50 rounded-2xl p-5 transition-all"
-              >
-                <div className="bg-[#25D366]/15 text-[#25D366] p-3 rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <FaWhatsapp size={22} />
-                </div>
-                <div>
-                  <p className="text-white font-semibold text-sm">
-                    Prefer WhatsApp?
-                  </p>
-                  <p className="text-gray-500 text-xs mt-0.5">
-                    Tap to open a chat with a pre-filled message — we reply fast!
-                  </p>
-                  <p className="text-[#25D366] text-xs font-medium mt-2 flex items-center gap-1">
-                    Start WhatsApp chat
-                    <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
-                  </p>
-                </div>
-              </a>
-            </motion.div>
-
-            {/* ── Right: form ── */}
+            
+            {/* ── Left/Top: form ── */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="relative bg-slate-950 border border-slate-800 rounded-3xl p-8 md:p-10 shadow-2xl"
+              className="relative bg-slate-950 border border-slate-800 rounded-3xl p-8 md:p-10 shadow-2xl order-1"
             >
               {/* Badge */}
-              <div className="absolute -top-4 -right-4 bg-green-600 text-white text-xs font-bold px-4 py-1.5 rounded-full animate-pulse shadow-lg">
+              <div className="absolute -top-4 -left-4 bg-green-600 text-white text-xs font-bold px-4 py-1.5 rounded-full animate-pulse shadow-lg">
                 Free Consultation
               </div>
 
               <h3 className="text-2xl font-bold text-white mb-1">
-                Book Your Free Audit
+                Real Estate Marketing Pandaece
               </h3>
               <p className="text-gray-400 text-sm mb-7">
                 Fill out the form — our experts will reach out within 24 hours.
@@ -376,6 +282,101 @@ export default function ContactPage() {
                   🔒 Your information is 100% confidential. No spam, ever.
                 </p>
               </form>
+            </motion.div>
+
+            {/* ── Right/Bottom: info panel ── */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="order-2"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Ready to Generate{" "}
+                <span className="text-green-500">High-Quality Leads?</span>
+              </h2>
+              <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+                Whether you&apos;re launching a residential project, promoting luxury
+                apartments, or scaling commercial campaigns — PANDAeCe builds
+                data-driven strategies that deliver measurable results.
+              </p>
+
+              {/* Bullet points */}
+              <div className="space-y-4 mb-10">
+                {[
+                  "Dedicated real estate marketing team",
+                  "AI-powered audience targeting",
+                  "Full-funnel campaign management",
+                  "Real-time analytics & reporting",
+                  "Guaranteed lead quality SLA",
+                ].map((point, i) => (
+                  <div key={i} className="flex items-center gap-3 text-gray-300">
+                    <CheckCircle2 size={17} className="text-green-500 flex-shrink-0" />
+                    {point}
+                  </div>
+                ))}
+              </div>
+
+              {/* Office Address — clickable Google Maps */}
+              <a
+                href={GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="office-address-map-link"
+                className="group flex items-start gap-4 bg-slate-900 border border-slate-800 hover:border-green-500/40 rounded-2xl p-5 transition-all"
+              >
+                <div className="bg-green-500/10 text-green-400 p-3 rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <MapPin size={20} />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <p className="text-xs text-gray-500 font-semibold uppercase tracking-widest">
+                      Office Address
+                    </p>
+                    <ExternalLink
+                      size={11}
+                      className="text-gray-600 group-hover:text-green-400 transition-colors"
+                    />
+                  </div>
+                  <p className="text-white font-semibold leading-relaxed text-sm">
+                    4th Floor, 292, 7th Main Rd,
+                    <br />
+                    Vyalikaval HBCS Layout, Nagavara,
+                    <br />
+                    Bengaluru, Karnataka 560045
+                  </p>
+                  <p className="text-green-400 text-xs font-medium mt-2 group-hover:text-green-300 transition-colors flex items-center gap-1">
+                    Open in Google Maps
+                    <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
+                  </p>
+                </div>
+              </a>
+
+              {/* WhatsApp quick message */}
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="whatsapp-quick-msg"
+                className="group mt-4 flex items-center gap-4 bg-[#25D366]/8 border border-[#25D366]/25 hover:border-[#25D366]/50 rounded-2xl p-5 transition-all"
+              >
+                <div className="bg-[#25D366]/15 text-[#25D366] p-3 rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <FaWhatsapp size={22} />
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-sm">
+                    Prefer WhatsApp?
+                  </p>
+                  <p className="text-gray-500 text-xs mt-0.5">
+                    Tap to open a chat with a pre-filled message — we reply fast!
+                  </p>
+                  <p className="text-[#25D366] text-xs font-medium mt-2 flex items-center gap-1">
+                    Start WhatsApp chat
+                    <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
+                  </p>
+                </div>
+              </a>
             </motion.div>
           </div>
         </div>

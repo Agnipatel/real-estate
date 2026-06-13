@@ -212,7 +212,7 @@ export default function HeroSection() {
               <button 
                 type="submit" 
                 disabled={status === "loading"}
-                className="w-full bg-white text-slate-900 font-bold px-4 py-4 rounded-lg hover:bg-gray-100 transition-colors mt-2 flex justify-center items-center gap-2"
+                className="w-full bg-green-600 text-slate-900 font-bold px-4 py-4 rounded-lg hover:bg-green-500 transition-colors mt-2 flex justify-center items-center gap-2"
               >
                 {status === "loading" ? <Loader2 className="animate-spin" size={20} /> : null}
                 Request Free Audit
