@@ -3,18 +3,23 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+
 import {
-  Mail,
-  Phone,
   MapPin,
-  Clock,
   Loader2,
   ArrowRight,
   CheckCircle2,
   ExternalLink,
 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { FaWhatsapp } from "react-icons/fa6";
-import Navbar from "../components/Navbar";
+
 
 const WHATSAPP_NUMBER = "918217794751";
 const WHATSAPP_MSG = encodeURIComponent(
@@ -60,7 +65,7 @@ export default function ContactPage() {
           budget: "40k - 50k",
           message: "",
         });
-        router.push("/realestatemarketingpandaece");
+        router.push("/thank-you");
       } else {
         throw new Error(data.error || "Something went wrong");
       }
@@ -77,15 +82,7 @@ export default function ContactPage() {
     "w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500/30 transition-all";
 
   return (
-    <main id="contact" className="min-h-screen bg-slate-950 text-slate-50">
-      <Navbar />
-
-     
-
-     
-
-      
-
+    <section id="contact" className="bg-slate-950 text-slate-50">
       {/* ══════════════════ FORM + INFO ══════════════════ */}
       <section className="py-20">
         <div className="container mx-auto px-6">
@@ -97,22 +94,22 @@ export default function ContactPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="relative bg-slate-950 border border-slate-800 rounded-3xl p-8 md:p-10 shadow-2xl order-1"
+              className="relative bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl order-1"
             >
               {/* Badge */}
-              <div className="absolute -top-4 -left-4 bg-green-600 text-white text-xs font-bold px-4 py-1.5 rounded-full animate-pulse shadow-lg">
+              <div className="absolute -top-4 left-4 md:-left-4 bg-green-600 text-white text-xs font-bold px-4 py-1.5 rounded-full animate-pulse shadow-lg">
                 Free Consultation
               </div>
 
-              <h3 className="text-2xl font-bold text-white mb-1">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
                 Real Estate Marketing Pandaece
               </h3>
-              <p className="text-gray-400 text-sm mb-7">
+              <p className="text-gray-400 text-xs sm:text-sm mb-7">
                 Fill out the form — our experts will reach out within 24 hours.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Name + Phone */}
+                {/* Name + Email */}
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -131,108 +128,144 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Phone Number
+                      Email Address
                     </label>
                     <input
-                      type="tel"
+                      type="email"
                       required
-                      value={formData.phone}
-                      onChange={(e) =>
-                        setFormData({ ...formData, phone: e.target.value })
-                      }
-                      className={inputClass}
-                      placeholder="+91 00000 00000"
+                      value={formData.email}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\s/g, "");
+                        setFormData({ ...formData, email: value });
+                        if (
+                          value &&
+                          !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)
+                        ) {
+                          setEmailError("Please enter a valid email address.");
+                        } else {
+                          setEmailError("");
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === " ") e.preventDefault();
+                      }}
+                      onPaste={(e) => {
+                        e.preventDefault();
+                        const pasted = e.clipboardData
+                          .getData("text")
+                          .replace(/\s/g, "");
+                        setFormData({ ...formData, email: pasted });
+                        if (
+                          pasted &&
+                          !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+                            pasted
+                          )
+                        ) {
+                          setEmailError("Please enter a valid email address.");
+                        } else {
+                          setEmailError("");
+                        }
+                      }}
+                      className={`${inputClass} ${emailError ? "border-red-500" : ""}`}
+                      placeholder="john@example.com"
                     />
+                    {emailError && (
+                      <p className="text-red-500 text-xs mt-1">{emailError}</p>
+                    )}
                   </div>
                 </div>
 
-                {/* Email */}
+                {/* Phone */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Email Address
+                    Phone Number
                   </label>
                   <input
-                    type="email"
+                    type="tel"
                     required
-                    value={formData.email}
-                    onChange={(e) => {
-                      const value = e.target.value.replace(/\s/g, "");
-                      setFormData({ ...formData, email: value });
-                      if (
-                        value &&
-                        !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)
-                      ) {
-                        setEmailError("Please enter a valid email address.");
-                      } else {
-                        setEmailError("");
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === " ") e.preventDefault();
-                    }}
-                    onPaste={(e) => {
-                      e.preventDefault();
-                      const pasted = e.clipboardData
-                        .getData("text")
-                        .replace(/\s/g, "");
-                      setFormData({ ...formData, email: pasted });
-                      if (
-                        pasted &&
-                        !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
-                          pasted
-                        )
-                      ) {
-                        setEmailError("Please enter a valid email address.");
-                      } else {
-                        setEmailError("");
-                      }
-                    }}
-                    className={`${inputClass} ${emailError ? "!border-red-500" : ""}`}
-                    placeholder="john@example.com"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                    className={inputClass}
+                    placeholder="+91 00000 00000"
                   />
-                  {emailError && (
-                    <p className="text-red-500 text-xs mt-1">{emailError}</p>
-                  )}
                 </div>
+                    <div className="grid sm:grid-cols-2 gap-5">
+  {/* Property Type */}
+  <div>
+    <label className="block text-sm font-medium text-gray-300 mb-2">
+      What service are you looking for?
+    </label>
 
-                {/* Property Type + Budget */}
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Property Type
-                    </label>
-                    <select
-                      value={formData.propertyType}
-                      onChange={(e) =>
-                        setFormData({ ...formData, propertyType: e.target.value })
-                      }
-                      className={`${inputClass} appearance-none`}
-                    >
-                      <option>Residential Real Estate</option>
-                      <option>Commercial Real Estate</option>
-                      <option>Luxury Real Estate</option>
-                      <option>Land / Plots</option>
-                      <option>Industrial Real Estate</option>
-                      <option>Mixed-Use Real Estate</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Budget Range
-                    </label>
-                    <select
-                      value={formData.budget}
-                      onChange={(e) =>
-                        setFormData({ ...formData, budget: e.target.value })
-                      }
-                      className={`${inputClass} appearance-none`}
-                    >
-                      <option value="40k - 50k">₹40k – ₹50k / month</option>
-                      <option value="50k - 1cr">₹50k – ₹1 Cr / month</option>
-                      <option value="1cr - 2cr">₹1 Cr – ₹2 Cr / month</option>
-                    </select>
-                  </div>
-                </div>
+    <Select
+      value={formData.propertyType}
+      onValueChange={(value) =>
+        setFormData({ ...formData, propertyType: value })
+      }
+    >
+      <SelectTrigger className={inputClass}>
+        <SelectValue placeholder="Select Property Type" />
+      </SelectTrigger>
+
+      <SelectContent className="bg-slate-900 border-slate-700 text-white z-[99999]" position="popper" sideOffset={5}>
+        <SelectItem value="Residential Real Estate">
+          Residential Real Estate
+        </SelectItem>
+        <SelectItem value="Commercial Real Estate">
+          Commercial Real Estate
+        </SelectItem>
+        <SelectItem value="Industrial Real Estate">
+          Industrial Real Estate
+        </SelectItem>
+        <SelectItem value="Land / Plots">
+          Land / Plots
+        </SelectItem>
+        <SelectItem value="Luxury Real Estate">
+          Luxury Real Estate
+        </SelectItem>
+        <SelectItem value="Mixed-Use Real Estate">
+          Mixed-Use Real Estate
+        </SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+
+  {/* Budget */}
+  <div>
+    <label className="block text-sm font-medium text-gray-300 mb-2">
+      Marketing Budget
+    </label>
+
+    <Select
+      value={formData.budget}
+      onValueChange={(value) =>
+        setFormData({ ...formData, budget: value })
+      }
+    >
+      <SelectTrigger className={inputClass}>
+        <SelectValue placeholder="Select Marketing Budget" />
+      </SelectTrigger>
+
+      <SelectContent className="bg-slate-900 border-slate-700 text-white z-[99999]" position="popper" sideOffset={5}>
+        <SelectItem value="40k - 50k">
+          ₹40k – ₹50k / month
+        </SelectItem>
+
+        <SelectItem value="50k - 1cr">
+          ₹50k – ₹1 Cr / month
+        </SelectItem>
+
+        <SelectItem value="1cr - 2cr">
+          ₹1 Cr – ₹2 Cr / month
+        </SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+</div>
+                
+
+   
 
                 {/* Message */}
                 <div>
@@ -292,11 +325,11 @@ export default function ContactPage() {
               transition={{ duration: 0.7 }}
               className="order-2"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                 Ready to Generate{" "}
                 <span className="text-green-500">High-Quality Leads?</span>
               </h2>
-              <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-400 mb-8 leading-relaxed">
                 Whether you&apos;re launching a residential project, promoting luxury
                 apartments, or scaling commercial campaigns — PANDAeCe builds
                 data-driven strategies that deliver measurable results.
@@ -311,7 +344,7 @@ export default function ContactPage() {
                   "Real-time analytics & reporting",
                   "Guaranteed lead quality SLA",
                 ].map((point, i) => (
-                  <div key={i} className="flex items-center gap-3 text-gray-300">
+                  <div key={i} className="flex items-center gap-3 text-sm sm:text-base text-gray-300">
                     <CheckCircle2 size={17} className="text-green-500 flex-shrink-0" />
                     {point}
                   </div>
@@ -381,8 +414,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-     
-    </main>
+    </section>
   );
 }

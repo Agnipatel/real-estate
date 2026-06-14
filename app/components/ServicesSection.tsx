@@ -50,11 +50,11 @@ export default function ServicesSection() {
 
         {/* ================= HEADER ================= */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
             Our Real Estate{" "}
             <span className="text-green-500">Marketing Services</span>
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-sm sm:text-base md:text-lg text-gray-400">
             Comprehensive digital marketing solutions engineered to drive
             property sales and maximize ROI.
           </p>
@@ -77,11 +77,11 @@ export default function ServicesSection() {
                 {service.icon}
               </div>
 
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-3">
                 {service.title}
               </h3>
 
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                 {service.desc}
               </p>
             </motion.div>
@@ -107,11 +107,11 @@ export default function ServicesSection() {
               AI-Powered Real Estate Advertising
             </div>
 
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-6">
               Measurable business growth, not just traffic.
             </h3>
 
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-300 mb-6 leading-relaxed">
               PANDAeCe uses AI-driven analytics and automation to optimize
               campaigns in real time and improve lead quality.
             </p>
@@ -136,17 +136,12 @@ export default function ServicesSection() {
         <div className="flex justify-center">
           <a
             href="#contact"
-            className="w-full max-w-3xl bg-green-600 hover:bg-green-700
-                       text-white text-center text-xl md:text-3xl font-bold
-                       py-6 md:py-8 px-8 rounded-2xl
-                       transition-all duration-300
-                       shadow-lg hover:shadow-green-500/30
-                       flex items-center justify-center group"
+            className="w-full max-w-3xl bg-green-600 hover:bg-green-700 text-white text-center text-base sm:text-xl md:text-2xl lg:text-3xl font-bold py-4 sm:py-6 md:py-8 px-6 sm:px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-green-500/30 flex items-center justify-center group"
           >
-            Book a Free Real Estate Growth Consultation
+            <span className="break-words">Book a Free Real Estate Growth Consultation</span>
             <ArrowRight
-              className="ml-4 group-hover:translate-x-1 transition-transform"
-              size={30}
+              className="ml-2 sm:ml-4 group-hover:translate-x-1 transition-transform flex-shrink-0"
+              size={24}
             />
           </a>
         </div>

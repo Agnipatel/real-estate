@@ -50,7 +50,7 @@ export default function Navbar() {
             alt="PANDAeCe Logo"
             width={150}
             height={150}
-            className="mr-2"
+            className="mr-2 w-24 sm:w-32 md:w-36 lg:w-40 h-auto"
             priority
           />
         </Link>

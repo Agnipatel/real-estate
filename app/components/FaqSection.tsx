@@ -34,7 +34,7 @@ export default function FaqSection() {
     <section className="py-24 bg-slate-950">
       <div className="container mx-auto px-6 max-w-3xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Frequently Asked <span className="text-green-500">Questions</span></h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Frequently Asked <span className="text-green-500">Questions</span></h2>
         </div>
 
         <div className="space-y-4">
@@ -42,12 +42,12 @@ export default function FaqSection() {
             <div key={idx} className="border border-slate-800 rounded-xl bg-slate-900 overflow-hidden">
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+                className="w-full px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left focus:outline-none"
               >
-                <span className="font-semibold text-white text-lg pr-4">{faq.q}</span>
+                <span className="font-semibold text-white text-sm sm:text-base md:text-lg pr-4">{faq.q}</span>
                 <ChevronDown 
                   className={`text-green-500 transition-transform duration-300 flex-shrink-0 ${openIndex === idx ? "rotate-180" : ""}`} 
-                  size={24} 
+                  size={20} 
                 />
               </button>
               <AnimatePresence>
@@ -58,7 +58,7 @@ export default function FaqSection() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-5 text-gray-400 leading-relaxed border-t border-slate-800/50 pt-4">
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-400 leading-relaxed border-t border-slate-800/50 pt-4">
                       {faq.a}
                     </div>
                   </motion.div>
@@ -72,13 +72,12 @@ export default function FaqSection() {
         <div className="flex justify-center mt-12">
           <a
             href="#contact"
-            className="w-full max-w-2xl bg-green-600 hover:bg-green-700 text-white text-center text-xl md:text-3xl font-bold py-6 md:py-8 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-green-500/30 flex items-center justify-center group"
+            className="w-full max-w-2xl bg-green-600 hover:bg-green-700 text-white text-center text-base sm:text-xl md:text-2xl lg:text-3xl font-bold py-4 sm:py-6 md:py-8 px-6 sm:px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-green-500/30 flex items-center justify-center group"
           >
-          Get Your Free Marketing Strategy Consultation
-
+            <span className="break-words">Get Your Free Marketing Strategy Consultation</span>
             <ArrowRight
-              className="ml-3 group-hover:translate-x-1 transition-transform"
-              size={28}
+              className="ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform flex-shrink-0"
+              size={20}
             />
           </a>
         </div>

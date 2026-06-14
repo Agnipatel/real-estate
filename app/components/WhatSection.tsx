@@ -64,19 +64,19 @@ export default function WhatSection() {
               We respond within 24 hours
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               Connect With{" "}
               <span className="text-green-500">Our Team</span>
             </h1>
 
-            <p className="text-xl md:text-3xl text-gray-300 mb-6">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6">
               Get Your{" "}
               <span className="text-green-400">
                 Free Consultation
               </span>
             </p>
 
-            <p className="max-w-2xl mx-auto text-gray-400 text-lg">
+            <p className="max-w-2xl mx-auto text-gray-400 text-base sm:text-lg">
               Talk to our experts and discover growth opportunities for your business.
             </p>
 
@@ -85,17 +85,17 @@ export default function WhatSection() {
                 href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#25D366] hover:bg-[#1ebe5d] px-7 py-3 rounded-full font-semibold flex items-center gap-2 transition"
+                className="bg-[#25D366] hover:bg-[#1ebe5d] px-5 sm:px-7 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base flex items-center gap-2 transition"
               >
-                <FaWhatsapp size={20} />
+                <FaWhatsapp size={18} />
                 Chat on WhatsApp
               </a>
 
               <a
                 href="tel:+918217794751"
-                className="bg-slate-800 hover:bg-slate-700 border border-slate-700 px-7 py-3 rounded-full flex items-center gap-2 transition"
+                className="bg-slate-800 hover:bg-slate-700 border border-slate-700 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-sm sm:text-base flex items-center gap-2 transition"
               >
-                <Phone size={18} />
+                <Phone size={16} />
                 Call Us
               </a>
             </div>
@@ -129,21 +129,21 @@ export default function WhatSection() {
                   {item.icon}
                 </div>
 
-                <p className="text-xs uppercase tracking-wider text-gray-500 mb-2">
+                <p className="text-xs sm:text-sm uppercase tracking-wider text-gray-500 mb-2">
                   {item.label}
                 </p>
 
-                <p className="font-semibold text-white mb-3">
+                <p className="font-semibold text-sm sm:text-base text-white mb-3">
                   {item.value}
                 </p>
 
                 {item.href && (
                   <a
                     href={item.href}
-                    className="text-green-400 flex items-center gap-1 text-sm"
+                    className="text-green-400 flex items-center gap-1 text-xs sm:text-sm"
                   >
                     {item.cta}
-                    <ArrowRight size={14} />
+                    <ArrowRight size={12} />
                   </a>
                 )}
               </motion.div>

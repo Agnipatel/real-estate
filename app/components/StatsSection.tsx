@@ -25,7 +25,7 @@ export default function StatsSection() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our Performance <span className="text-green-500">Numbers</span></h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Our Performance <span className="text-green-500">Numbers</span></h2>
         </div>
 
         {/* Stats Grid */}
@@ -37,11 +37,11 @@ export default function StatsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="bg-slate-800/50 border border-slate-700/50 p-8 rounded-2xl text-center backdrop-blur-sm"
+              className="bg-slate-800/50 border border-slate-700/50 p-6 sm:p-8 rounded-2xl text-center backdrop-blur-sm"
             >
-              <div className="text-5xl font-extrabold text-white mb-2 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">{stat.value}</div>
-              <h3 className="text-xl font-bold text-white mb-2">{stat.label}</h3>
-              <p className="text-gray-400 text-sm">{stat.desc}</p>
+              <div className="text-4xl sm:text-5xl font-extrabold text-white mb-2 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">{stat.value}</div>
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{stat.label}</h3>
+              <p className="text-sm sm:text-base text-gray-400">{stat.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -67,7 +67,7 @@ export default function StatsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">Why Partner With Our <span className="text-green-500">Agency?</span></h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-8">Why Partner With Our <span className="text-green-500">Agency?</span></h2>
             
             <div className="space-y-6">
               {reasons.map((reason, idx) => (
@@ -76,8 +76,8 @@ export default function StatsSection() {
                     {reason.icon}
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-xl font-bold text-white mb-1">{reason.title}</h4>
-                    <p className="text-gray-400">{reason.desc}</p>
+                    <h4 className="text-lg sm:text-xl font-bold text-white mb-1">{reason.title}</h4>
+                    <p className="text-sm sm:text-base text-gray-400">{reason.desc}</p>
                   </div>
                 </div>
               ))}

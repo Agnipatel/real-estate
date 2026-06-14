@@ -42,8 +42,8 @@ export default function TestimonialsSection() {
       <div className="container mx-auto px-6">
         
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">What Our <span className="text-green-500">Clients Say</span></h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">What Our <span className="text-green-500">Clients Say</span></h2>
+          <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
             Don t just take our word for it. Here is what leading real estate brands have to say about our performance marketing.
           </p>
         </div>
@@ -56,13 +56,13 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-slate-800 p-8 rounded-2xl border border-slate-700 flex flex-col justify-between"
+              className="bg-slate-800 p-6 sm:p-8 rounded-2xl border border-slate-700 flex flex-col justify-between"
             >
               <div>
                 <div className="flex text-yellow-500 mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
+                  {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
                 </div>
-                <p className="text-gray-300 italic mb-6 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-300 italic mb-6 leading-relaxed">
                   {item.text}
                 </p>
               </div>
@@ -77,13 +77,12 @@ export default function TestimonialsSection() {
         <div className="flex justify-center mt-12">
           <a
             href="#contact"
-            className="w-full max-w-2xl bg-green-600 hover:bg-green-700 text-white text-center text-xl md:text-3xl font-bold py-6 md:py-8 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-green-500/30 flex items-center justify-center group"
+            className="w-full max-w-2xl bg-green-600 hover:bg-green-700 text-white text-center text-base sm:text-xl md:text-2xl lg:text-3xl font-bold py-4 sm:py-6 md:py-8 px-6 sm:px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-green-500/30 flex items-center justify-center group"
           >
-            Let s Grow Your Real Estate Business
-
+            <span className="break-words">Let s Grow Your Real Estate Business</span>
             <ArrowRight
-              className="ml-3 group-hover:translate-x-1 transition-transform"
-              size={28}
+              className="ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform flex-shrink-0"
+              size={20}
             />
           </a>
         </div>

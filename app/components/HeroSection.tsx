@@ -71,24 +71,24 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-block px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 font-medium text-sm mb-6">
+            <div className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 font-medium text-xs sm:text-sm mb-6">
               Real Estate Marketing Agency in Bangalore
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               AI-Powered Online Lead Generation for <span className="text-green-500">Real Estate Brands</span>
             </h1>
-            <p className="text-lg text-gray-300 mb-8 max-w-xl">
+            <p className="text-base sm:text-lg text-gray-300 mb-8 max-w-xl">
               PANDAeCe is a performance-driven real estate marketing agency helping builders, developers, and property brands generate high-quality buyer leads through AI-powered digital marketing strategies.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href="#contact" className="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 group">
+              <a href="#contact" className="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-sm sm:text-base transition-all transform hover:scale-105 group">
                 Book Free Marketing Audit
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </a>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 text-sm font-medium text-gray-400">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-xs sm:text-sm font-medium text-gray-400">
               <span className="flex items-center"><CheckCircle className="text-green-500 mr-2" size={16} /> More Visibility</span>
               <span className="flex items-center"><CheckCircle className="text-green-500 mr-2" size={16} /> Qualified Leads</span>
               <span className="flex items-center"><CheckCircle className="text-green-500 mr-2" size={16} /> Property Sales</span>
@@ -100,12 +100,12 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-slate-800/80 backdrop-blur-xl border border-slate-700 p-8 rounded-2xl shadow-2xl relative"
+            className="bg-slate-800/80 backdrop-blur-xl border border-slate-700 p-6 sm:p-8 rounded-2xl shadow-2xl relative"
           >
-            <div className="absolute -top-4 -right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
+            <div className="absolute -top-4 right-4 sm:-right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
               Free Consultation
             </div>
-            <h3 className="text-2xl font-bold text-white mb-6">Connect With Our Team</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">Real Estate Marketing Pandaece</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
@@ -165,7 +165,7 @@ export default function HeroSection() {
                 <select 
                   value={formData.propertyType}
                   onChange={(e) => setFormData({...formData, propertyType: e.target.value})}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none"
+                  className=" bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none"
                 >
                   <option>Residential Real Estate</option>
                   <option>Commercial Real Estate</option>
@@ -180,7 +180,7 @@ export default function HeroSection() {
                 <select 
                   value={formData.budget}
                   onChange={(e) => setFormData({...formData, budget: e.target.value})}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none"
+                  className=" bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none"
                 >
                   <option value="40k - 50k">₹40k – ₹50k / month</option>
                   <option value="50k - 1cr">₹50k – ₹1 Cr / month</option>
@@ -226,20 +226,21 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="mt-20 border-t border-slate-800 pt-8"
+          className="mt-16 sm:mt-20 border-t border-slate-800 pt-8"
         >
-          <p className="text-center text-sm font-medium text-gray-400 mb-6 uppercase tracking-wider">Trusted By Modern Businesses & Official Partners</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 transition-all duration-500">
+          <p className="text-center text-xs sm:text-sm font-medium text-gray-400 mb-6 uppercase tracking-wider">Trusted By Modern Businesses & Official Partners</p>
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-16 transition-all duration-500">
             {[
-              { name: "Meta", icon: <FaMeta size={28} color="#0668E1" /> },
-              { name: "Google Ads", icon: <GoogleIcon /> },
-              { name: "Shopify", icon: <FaShopify size={28} color="#95BF47" /> },
-              { name: "Amazon", icon: <FaAmazon size={28} color="#FF9900" /> },
-              { name: "WhatsApp", icon: <FaWhatsapp size={28} color="#25D366" /> },
+              { name: "Meta", icon: <FaMeta size={24} color="#0668E1" />, iconSm: <FaMeta size={20} color="#0668E1" /> },
+              { name: "Google Ads", icon: <GoogleIcon />, iconSm: <GoogleIcon size={20} /> },
+              { name: "Shopify", icon: <FaShopify size={24} color="#95BF47" />, iconSm: <FaShopify size={20} color="#95BF47" /> },
+              { name: "Amazon", icon: <FaAmazon size={24} color="#FF9900" />, iconSm: <FaAmazon size={20} color="#FF9900" /> },
+              { name: "WhatsApp", icon: <FaWhatsapp size={24} color="#25D366" />, iconSm: <FaWhatsapp size={20} color="#25D366" /> },
             ].map((partner) => (
-              <div key={partner.name} className="flex items-center space-x-3 text-xl font-bold text-white opacity-80 hover:opacity-100 transition-all hover:scale-105 transform duration-300">
-                {partner.icon}
-                <span>{partner.name}</span>
+              <div key={partner.name} className="flex items-center space-x-2 sm:space-x-3 text-base sm:text-lg md:text-xl font-bold text-white opacity-80 hover:opacity-100 transition-all hover:scale-105 transform duration-300">
+                <span className="hidden sm:inline">{partner.icon}</span>
+                <span className="sm:hidden">{partner.iconSm}</span>
+                <span className="text-sm sm:text-base md:text-xl">{partner.name}</span>
               </div>
             ))}
           </div>
@@ -250,8 +251,8 @@ export default function HeroSection() {
   );
 }
 
-const GoogleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 48 48">
+const GoogleIcon = ({ size = 28 }: { size?: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 48 48">
     <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
     <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
     <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
