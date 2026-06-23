@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import connectMongo from "@/lib/mongodb";
 import Contact from "@/models/Contact";
+import { createGHLContact } from "@/lib/ghl";
 
 export async function POST(req: Request) {
   try {
@@ -18,6 +19,34 @@ export async function POST(req: Request) {
     await connectMongo();
     await Contact.create({ name, email, phone, propertyType, budget: budget || "", message: message || "" });
 
+
+await connectMongo();
+
+const savedLead = await Contact.create({
+  name,
+  email,
+  phone,
+  propertyType,
+  budget: budget || "",
+  message: message || "",
+});
+
+console.log("MongoDB Lead Saved:", savedLead);
+
+try {
+  const ghlResponse = await createGHLContact({
+    name,
+    email,
+    phone,
+    propertyType,
+    budget,
+    message,
+  });
+
+  console.log("GHL Response:", ghlResponse);
+} catch (error) {
+  console.error("GHL CRM Error:", error);
+}
     // Step 2: Try sending email notification (non-blocking)
     let emailSent = false;
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS && process.env.EMAIL_PASS !== "YOUR_GMAIL_APP_PASSWORD_HERE") {
