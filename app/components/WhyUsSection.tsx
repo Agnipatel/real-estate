@@ -61,7 +61,7 @@ export default function WhyUsSection() {
             <div className="mt-10 p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-400 font-medium">Better Conversion Rates</p>
-                <p className="text-white font-bold text-xl">Higher ROAS</p>
+                <p className="text-white font-bold text-xl">Highers ROAS</p>
               </div>
               <div className="bg-green-600 px-4 py-2 rounded-lg text-sm font-bold text-white">
                 Proven AI Strategy
