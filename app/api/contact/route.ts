@@ -16,8 +16,8 @@ export async function POST(req: Request) {
     }
 
     // Step 1: Save lead to MongoDB (always runs first)
-    await connectMongo();
-    await Contact.create({ name, email, phone, propertyType, budget: budget || "", message: message || "" });
+    // await connectMongo();
+    // await Contact.create({ name, email, phone, propertyType, budget: budget || "", message: message || "" });
 
 
 await connectMongo();
